@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration debug="false">     
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">  
+   		<resetJUL>true</resetJUL>  
+ 	</contextListener>    
+	
+	<!--  console appender -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+			<pattern>%thread{15} | %.-1level| %d{HH:mm:ss.SSS} | %logger{0}:%line | %msg%n</pattern>
+		</encoder>
+	</appender>
+    
+    <!-- file rolling - each day a new file with max of 10 -->
+    <appender name="rolling-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+          
+        <file>training.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>ucode_notif-test.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 5 days' worth of history -->
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+         <encoder>
+            <pattern>%d %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    
+	<!-- other third party loggers -->
+    <logger name="org.springframework" level="info" />   
+    <!--  logger name="org.springframework.beans" level="debug" /-->
+    
+    <logger name="org.hibernate.SQL" level="debug" />
+    <logger name="org.hibernate.type" level="info" />
+    <!-- make the following trace to see values of selects and comment the filter above -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="debug" />
+	
+    <!--  The level for the appender -->
+	<root level="info"> 
+   		<appender-ref ref="console" />
+        <!-- appender-ref ref="rolling-file" /-->   		
+	</root> 
+	
+</configuration> 
+

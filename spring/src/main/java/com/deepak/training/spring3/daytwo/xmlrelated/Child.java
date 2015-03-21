@@ -1,0 +1,83 @@
+package com.deepak.training.spring3.daytwo.xmlrelated;
+
+import java.util.List;
+import java.util.Map;
+
+public class Child {
+
+    private String name;
+    private int    age;
+    private double salary;
+    private String designation;
+    
+    private List<String> childList;
+    
+    private Map<String,Object> map;
+    
+    public Map<String, Object> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+
+	public Child() {
+	}
+    
+	public Child(int age, double salary) {
+		super();
+		this.age = age;
+		this.salary = salary;
+	}
+
+
+	@Override
+    public String toString() {
+        String str = String.format("child details - name '%s', age '%d', salary '%f', designation '%s'",
+                name, age, salary, designation);
+        return str;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+    
+    public List<String> getChildList() {
+		return childList;
+	}
+
+	public void setChildList(List<String> childList) {
+		this.childList = childList;
+	}
+
+
+}
