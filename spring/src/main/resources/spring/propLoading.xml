@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:c="http://www.springframework.org/schema/c" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+       
+
+  <!--old style Externalizing properties 
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <bean class="org.springframework.core.io.FileSystemResource">
+                    <constructor-arg value="appProperties.properties" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    --> 
+    <!-- the context namespace will give you a PropertySourcesPlaceholder-Configurer bean: -->
+    <context:property-placeholder location="classpath:spring-train.properties"/>      
+    
+    <bean id="propertyLoadingEg" class="com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg" 
+        p:dbDriver="${train.db.driverName}"/>
+        
+    <bean id="propertyLoadingEg2" class="com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg" 
+        c:dbDriver="#{systemProperties['newDriverName']}"/>
+</beans>

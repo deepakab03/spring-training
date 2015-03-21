@@ -16,4 +16,6 @@
         p:message="commo sava" />
     
     <bean id="helloWorld21" class="com.deepak.training.spring3.dayone.HelloWorld2" />
+    
+    <!-- <context:component-scan base-package="com.deepak.training.spring3.dayone" /> -->
 </beans>

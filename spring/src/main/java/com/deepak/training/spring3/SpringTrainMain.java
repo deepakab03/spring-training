@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.deepak.training.spring3.dayone.HelloWorld;
 import com.deepak.training.spring3.dayone.config.DayOneConfig;
@@ -21,6 +19,7 @@ public class SpringTrainMain {
         dayTwo(args);
     }
 
+    @SuppressWarnings("resource")
     static void dayOne() throws IOException {
         ApplicationContext ctx= new AnnotationConfigApplicationContext(DayOneConfig.class);
                 //new ClassPathXmlApplicationContext("/spring/context-spring-core.xml");
@@ -28,6 +27,7 @@ public class SpringTrainMain {
         HelloWorld hw = (HelloWorld) ctx.getBean("helloWorld");
         
         hw.hello();
+        
     }
     
     static void dayTwo(String[] args) throws IOException {
@@ -36,7 +36,7 @@ public class SpringTrainMain {
     }
 
 
-    private static void addTestShutDownHook() {
+    static void addTestShutDownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             
             @Override

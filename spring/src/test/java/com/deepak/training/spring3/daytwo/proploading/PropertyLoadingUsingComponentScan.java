@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.daytwo;
+package com.deepak.training.spring3.daytwo.proploading;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.deepak.training.spring3.daytwo.config.DayTwoConfigWithPropertyLoadingUsingEnv;
+import com.deepak.training.spring3.daytwo.config.propload.DayTwoConfigWithPropertyLoadingComponentScan;
 
-@ContextConfiguration(classes=DayTwoConfigWithPropertyLoadingUsingEnv.class)
+@ContextConfiguration(classes=DayTwoConfigWithPropertyLoadingComponentScan.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class PropertyLoadingUsingEnvIT {
+public class PropertyLoadingUsingComponentScan {
 
-    @Autowired private PropertyLoadingUsingEnvEg propertyLoadingEg;
+    @Autowired private PropertyLoadingComponentScanEg propertyLoadingAnnotationEg;
 
     @Test public void
     whenGetDbDriver_givenDbDriverInjected_shouldReturnTheSame() {
         
-        assertThat(propertyLoadingEg.getDbDriver(), is("com.hsql.HSqlDb"));
+        assertThat(propertyLoadingAnnotationEg.getDbDriver(), is("com.hsql.HSqlDb"));
     }
 }
