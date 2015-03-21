@@ -13,8 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.deepak.training.spring3.config.DayTwoConfig;
 import com.deepak.training.spring3.dayone.HelloWorld;
+import com.deepak.training.spring3.daytwo.config.DayTwoConfig;
 import com.deepak.training.spring3.daytwo.methodinjection.CommandManager;
 import com.deepak.training.spring3.daytwo.xmlrelated.Autowire;
 import com.deepak.training.spring3.daytwo.xmlrelated.Child;

@@ -9,8 +9,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.deepak.training.spring3.config.DayOneConfig;
 import com.deepak.training.spring3.dayone.HelloWorld;
+import com.deepak.training.spring3.dayone.config.DayOneConfig;
 import com.deepak.training.spring3.daytwo.DayTwo;
 
 public class SpringTrainMain {

@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.config;
+package com.deepak.training.spring3.daytwo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 
+import com.deepak.training.spring3.dayone.config.DayOneConfig;
 import com.deepak.training.spring3.daytwo.SomeService;
 import com.deepak.training.spring3.daytwo.methodinjection.AsyncCommand;
 import com.deepak.training.spring3.daytwo.methodinjection.SimpleCommand;
