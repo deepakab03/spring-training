@@ -15,6 +15,7 @@ import com.deepak.training.spring3.daytwo.methodinjection.CommandManager;
 import com.deepak.training.spring3.daytwo.xmlrelated.Autowire;
 import com.deepak.training.spring3.daytwo.xmlrelated.Child;
 import com.deepak.training.spring3.daytwo.xmlrelated.MyValueCalculator;
+import com.deepak.training.spring3.daytwo.xmlrelated.NonSpringBeanInjectionXml;
 import com.deepak.training.spring3.daytwo.xmlrelated.Outer;
 
 public class DayTwo {
@@ -93,6 +94,28 @@ public class DayTwo {
              */
             logger.info(((Autowire) ctx.getBean("compoundNaming")).getHelloWorld()
                     .getMessage());
+            
+            /*
+             * parent child bean relation
+             */
+             Child c = (Child) ctx.getBean("childBean1");
+             Child c2 = (Child) ctx.getBean("childBean2");
+             logger.info("child 1 " + c);
+             logger.info("child 2 " + c2);
+             
+             /**
+              * Injecting non spring beans using aspectj LTW - Add spring/dist/weaving/spring-aspects.jar to
+              * classpath.
+              * <ol>
+              * <li>Add @Configurable on top of class decl of bean with the bean id (eg "nonSpringBean" passed in
+              * brackets
+              * <li>Declare the nonSpringBean abstract bean definiton in xml with required injected properties
+              * <li>Add <context:spring-configured/> line to xml.
+              * <li>Add the following jvmagent to your runtime invocation -> -javaagent:pathTo/aspectjweaver.jar
+              * </ol
+              */
+             NonSpringBeanInjectionXml n = new NonSpringBeanInjectionXml();
+             logger.info(n.toString());
         }
     }
 

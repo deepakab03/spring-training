@@ -20,6 +20,8 @@
    
     <alias name="hw" alias="app.HiWorld" />
     
+    <!-- alternative bean creation methods using A) factory-method for static classes
+        and B)factory-method and factory-bean from an existing bean  -->
     <bean id="factoryBeanEg" class="com.deepak.training.spring3.daytwo.xmlrelated.FactoryBeanEg" />
     
     <bean id="staticMethChild" class="com.deepak.training.spring3.daytwo.xmlrelated.StaticMethod" factory-method="getChild" />
@@ -27,7 +29,7 @@
     <!-- the bean to be created via the factory bean -->
     <bean id="collectionCreater" factory-bean="factoryBeanEg" factory-method="createInstance" />
 
-    <!-- Innter bean examples -->
+    <!-- Inner bean examples -->
     <bean id="outer" class="com.deepak.training.spring3.daytwo.xmlrelated.Outer">
         <property name="target">
             <bean class="com.deepak.training.spring3.daytwo.xmlrelated.Child">
@@ -36,7 +38,8 @@
             </bean>
         </property>
     </bean>
-
+    
+    <!-- method injection -->
     <!-- a stateful bean deployed as a prototype (non-singleton) -->
     <bean id="command" class="com.deepak.training.spring3.daytwo.methodinjection.AsyncCommand" scope="prototype">
          <property name="someService">

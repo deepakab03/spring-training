@@ -9,7 +9,8 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-       
+    
+    <!-- list and map injection, the old way -->   
     <bean id="childBean" class="com.deepak.training.spring3.daytwo.xmlrelated.Child">
 		<property name="name" value="Anand" />
 		<property name="childList">
@@ -24,16 +25,52 @@
 		<property name="map">
 			<map>
 				<entry key="k1" value="d1" />
-				<entry key="k2" value-ref="anotherChild" />
+				<entry key="k2" value-ref="autowireEg" />
 			</map>
 		</property>
 	</bean>
 	
-	<bean id="anotherChild" class="com.deepak.training.spring3.daytwo.xmlrelated.Child">
-		<constructor-arg type="double" value="30.5" />
-		<constructor-arg type="int" value="10" />
-		<property name="name" value="Seema" />
-	</bean>
-	
+     <!-- parent child relationship,  for parent if class is not used then abstract="true"
+      has to be specified --> 
+    <bean id="parentBean" abstract="true">
+        <property name="name" value="parentTest" />
+        <property name="age" value="1" />
+        <property name="salary" value="10000" />
+        <property name="designation" value="ASSociate" />
+    </bean>
+    
+    <bean id="childBean1" class="com.deepak.training.spring3.daytwo.xmlrelated.Child" parent="parentBean">
+        <property name="name" value="Anand" />
+    </bean>
+    
+    <bean id="childBean2" class="com.deepak.training.spring3.daytwo.xmlrelated.Child" parent="parentBean">
+        <property name="name" value="Bhaskar" />
+        <property name="age" value="2" />
+    </bean> 
+    
+    <!-- ResourceBundle i18n and text message resolution (or use ReloadableResourceBundleMessageSource) 
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>errorMsg</value>
+            </list>
+        </property>
+    </bean>
+    -->
+    
+    <!-- Application listeners 
+    <bean id="listener" class="com.deepak.training.spring3.daytwo.applistener.TaxCalculator" />
+    -->
+    
+    <!-- Injecting non spring beans -->
+    <context:spring-configured/>
+    <bean id="nonSpringBean" class="com.deepak.training.spring3.daytwo.xmlrelated.NonSringBeanInjectionXml" abstract="true">
+        <property name="name" value="non injected" />
+        <property name="age" value="1" />
+        <property name="salary" value="10000" />
+        <property  name="designation" value="associate" />
+    </bean>
+      
        
 </beans>
