@@ -22,6 +22,7 @@ public class DayOneConfig {
         return helloWorld;
 	}
 	
+	//what happens if we comment the @Bean annotation?
 	@Bean
 	public String classpathFileName() {
 	    logger.info("Creating the classpath file name bean");
