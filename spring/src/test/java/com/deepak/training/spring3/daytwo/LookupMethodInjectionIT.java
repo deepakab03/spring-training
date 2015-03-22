@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.deepak.training.spring3.daytwo.config.DayTwoComponentScanConfig;
+import com.deepak.training.spring3.config.daytwo.DayTwoComponentScanConfig;
 import com.deepak.training.spring3.daytwo.methodinjection.CommandManagerAnnotated;
 
 @ContextConfiguration(classes=DayTwoComponentScanConfig.class)

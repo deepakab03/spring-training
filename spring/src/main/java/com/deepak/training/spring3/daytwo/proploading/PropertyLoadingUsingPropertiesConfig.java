@@ -1,6 +1,6 @@
 package com.deepak.training.spring3.daytwo.proploading;
 
-import com.deepak.training.spring3.daytwo.config.propload.PropertiesConfig;
+import com.deepak.training.spring3.config.daytwo.propload.PropertiesConfig;
 
 public class PropertyLoadingUsingPropertiesConfig {
 

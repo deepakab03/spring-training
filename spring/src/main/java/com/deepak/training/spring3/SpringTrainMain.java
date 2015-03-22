@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.deepak.training.spring3.config.dayone.DayOneConfig;
 import com.deepak.training.spring3.dayone.HelloWorld;
-import com.deepak.training.spring3.dayone.config.DayOneConfig;
 import com.deepak.training.spring3.daytwo.DayTwo;
 
 public class SpringTrainMain {

@@ -17,7 +17,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.deepak.training.spring3.daytwo.config.DayTwoConfig;
+import com.deepak.training.spring3.config.daytwo.DayTwoConfig;
 
 @ContextConfiguration(classes=DayTwoConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)

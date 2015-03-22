@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.daytwo.config;
+package com.deepak.training.spring3.config.daytwo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
+import com.deepak.training.spring3.config.dayone.DayOneConfig;
 import com.deepak.training.spring3.dayone.HelloWorld2;
-import com.deepak.training.spring3.dayone.config.DayOneConfig;
 import com.deepak.training.spring3.daytwo.BeanLifeCycleEg;
 import com.deepak.training.spring3.daytwo.InitDestroyEg;
 import com.deepak.training.spring3.daytwo.InitDestroyEg2;

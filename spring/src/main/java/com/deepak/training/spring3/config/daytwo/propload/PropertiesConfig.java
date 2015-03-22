@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.daytwo.config.propload;
+package com.deepak.training.spring3.config.daytwo.propload;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;

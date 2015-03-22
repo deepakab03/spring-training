@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.dayone.config;
+package com.deepak.training.spring3.config.dayone;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

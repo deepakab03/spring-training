@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.deepak.training.spring3.daytwo.config.propload.DayTwoConfigWithPropertyLoadingSpEl;
+import com.deepak.training.spring3.config.daytwo.propload.DayTwoConfigWithPropertyLoadingSpEl;
 
 @ContextConfiguration(classes=DayTwoConfigWithPropertyLoadingSpEl.class)
 @RunWith(SpringJUnit4ClassRunner.class)

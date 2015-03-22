@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.daytwo.config.propload;
+package com.deepak.training.spring3.config.daytwo.propload;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

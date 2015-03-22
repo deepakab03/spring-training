@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.dayone.config;
+package com.deepak.training.spring3.config.dayone;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
