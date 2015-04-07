@@ -3,21 +3,25 @@
     xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- >context:annotation-config/>
-    <bean class="com.deepak.training.spring3.dayone.config.DayOneConfig"/-->
+    <!-- importing java config into xml config -->
+    <context:annotation-config/>
+    <bean class="com.deepak.training.spring3.dayone.config.DayOneConfig"/>
     
-    <import resource="context-spring-core.xml" />
+    <!-- import resource="context-spring-core.xml" /-->
     <import resource="anotherXml.xml" />
     <import resource="propLoading.xml" />
     
     <!--  autowiring -->
     <bean id="autowireEg" class="com.deepak.training.spring3.daytwo.xmlrelated.Autowire" autowire="constructor" />
    
+    <bean id="hw" class="com.deepak.training.spring3.dayone.HelloWorld2">
+        <property name="message" value="commo sava" />
+    </bean>
     <alias name="hw" alias="app.HiWorld" />
     
     <!-- alternative bean creation methods using A) factory-method for static classes

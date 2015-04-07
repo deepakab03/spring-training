@@ -18,17 +18,22 @@ import com.deepak.training.spring3.dayone.HelloWorld2;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class NameAliasLazyIT {
 
-    @Autowired private HelloWorld2 hww;
     @Autowired private HelloWorld2 helloWorld2;
+    @Autowired private HelloWorld2 hww;
+    @Autowired private HelloWorld2 hww2;
     
 //    @Autowired private HelloWorld2 helloWorld22;?
     
     @Test public void
     nameAliasTest() throws IOException {
-        String msg = hww.sayHelloAgain();
+        String msg = helloWorld2.sayHelloAgain();
+        assertThat(msg, is("Namaskar"));
+        
+        msg = hww.sayHelloAgain();
         assertThat(msg, is("commo sava"));
         
-        msg = helloWorld2.sayHelloAgain();
-        assertThat(msg, is("Namaskar"));
+        msg = hww2.sayHelloAgain();
+        assertThat(msg, is("commo sava"));
+        
     }
 }
