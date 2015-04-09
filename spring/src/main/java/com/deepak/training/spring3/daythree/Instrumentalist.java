@@ -9,14 +9,21 @@ import com.deepak.training.spring3.exception.PerformanceException;
 public class Instrumentalist implements Performer {
     private static final Log logger = LogFactory.getLog(Instrumentalist.class);
     private String song;
+    private boolean throwEx;
 
     public void perform() throws PerformanceException {
-            logger.info("Performer Playing " + song);
-//            if (true) throw new PerformanceException("test exception");
+        logger.info("Performer Playing " + song);
+
+        if (throwEx) throw new PerformanceException("test exception");
     }
 
     public void setSong(String song) {
         this.song = song;
+    }
+
+    @Override
+    public void flagThrowEx(boolean throwEx) {
+        this.throwEx = throwEx;
     }
 
 }

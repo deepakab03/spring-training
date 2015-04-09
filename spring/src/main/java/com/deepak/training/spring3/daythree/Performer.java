@@ -4,5 +4,7 @@ import com.deepak.training.spring3.exception.PerformanceException;
 
 public interface Performer {
 
-    void perform() throws PerformanceException ;
+    void perform() throws PerformanceException;
+    
+    void flagThrowEx(boolean throwEx);
 }
