@@ -12,7 +12,7 @@ import com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg;
 @Configuration
 @Lazy
 @PropertySource("classpath:spring-train.properties")
-public class DayTwoConfigWithPropertyLoadingSpEl {
+public class DayTwoConfigWithPropertyLoading {
     
     //can this be put directly in the PropertyLoadingEg class?
     @Value("${train.db.driverName}") private String trainDbDriver;

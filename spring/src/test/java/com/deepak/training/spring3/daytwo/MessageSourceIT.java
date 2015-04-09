@@ -32,7 +32,7 @@ public class MessageSourceIT {
     @Test public void
     whenGetMessageForNoDetailsFound_givenUSLocale_shouldReturnUSPropValue() throws IOException {
         /*
-         * messageSource beans, us is default locale in India so _en_US might not work.
+         * messageSource beans, if US is default locale so _en_US should work.
          */
          logger.info("Current Locale: " + Locale.getDefault());
          String msg = msgSource.getMessage("noDetailsFound", null, "No details found", null);
@@ -45,7 +45,7 @@ public class MessageSourceIT {
         Locale defaultLocale = Locale.getDefault();
         try {
             Locale.setDefault(Locale.UK);
-            logger.info("Current Locale: " + Locale.getDefault());
+            logger.info("Current Locale2: " + Locale.getDefault());
             String msg = msgSource.getMessage("noDetailsFound", null, "No details found", null);
 
             assertThat(msg, is("Not really, no details were found for your search"));
@@ -62,7 +62,7 @@ public class MessageSourceIT {
     }
     
     @Test public void
-    whenGetMessage_givenKeyNotInLocalePropsANDKeyDefinedInDefaultPropsFile_shouldReturnDefaultPropValue() throws IOException {
+    whenGetMessage_givenKeyNotInLocalePropsBUTKeyDefinedInDefaultPropsFile_shouldReturnDefaultPropValue() throws IOException {
         String msg = msgSource.getMessage("noDetails", null, "No details found", null);
         
         assertThat(msg, is("No details were found for your search"));
@@ -70,17 +70,17 @@ public class MessageSourceIT {
     
     @Test public void
     whenGetMessage_givenKeyNotInLocalePropsANDKeyNOTDefinedInDefaultPropsFile_shouldReturnDefaultValuePassed() throws IOException {
-        String msg = msgSource.getMessage("noDet", null, "No details found", null);
+        String msg = msgSource.getMessage("noDet", null, "Not found", null);
         
-        assertThat(msg, is("No details found"));
+        assertThat(msg, is("Not found"));
     }
     
     //make this pass?
     @Test public void
     whenGetMessage_givenKeyCorrectyButLocalePassedDoesnNOTHaveAPropFile_shouldReturnDefaultValuePassed() throws IOException {
-        String msg = msgSource.getMessage("noDet", null, "No details found", Locale.GERMAN);
+        String msg = msgSource.getMessage("noDet", null, "Not found2", Locale.GERMAN);
         
-        assertThat(msg, is("No details found"));
+        assertThat(msg, is("Not found2"));
     }
     
     @Test public void

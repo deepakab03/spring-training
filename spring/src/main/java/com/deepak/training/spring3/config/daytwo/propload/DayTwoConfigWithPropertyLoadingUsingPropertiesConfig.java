@@ -12,7 +12,11 @@ import com.deepak.training.spring3.daytwo.proploading.PropertyLoadingUsingProper
 
 @Configuration
 @Lazy
+//is this always required? Not if all default values are specified
 @PropertySource("classpath:spring-train.properties")
+//using from a file system, can i use a property ${} here?
+//@PropertySource("file:c:/dev/spring-train1.properties")
+//@PropertySource("file:${prop-location}/spring-train1.properties")
 @Import(PropertiesConfig.class)
 public class DayTwoConfigWithPropertyLoadingUsingPropertiesConfig {
     

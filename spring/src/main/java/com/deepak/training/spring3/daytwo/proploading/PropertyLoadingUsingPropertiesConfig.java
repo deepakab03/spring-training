@@ -30,4 +30,8 @@ public class PropertyLoadingUsingPropertiesConfig {
     public void setConfigProperties(PropertiesConfig propertiesConfig) {
         this.propertiesConfig = propertiesConfig;
     }
+    
+    public String getPropertyNotDefinedInPropfile() {
+        return propertiesConfig.getPropertyNotDefinedInPropfile();
+    }
 }

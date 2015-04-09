@@ -24,6 +24,7 @@ import com.deepak.training.spring3.daytwo.applistener.TaxCalculator;
 
 @Configuration
 @Lazy
+//importing xml config files?
 @Import(DayOneConfig.class)
 public class DayTwoConfig {
     private static final Logger logger = LoggerFactory.getLogger(DayTwoConfig.class);
@@ -76,7 +77,7 @@ public class DayTwoConfig {
 	 * Alias, names of beans and lazy initialization at a bean / config level.
 	 * @return
 	 */
-    @Bean(name="hww")
+    @Bean(name= {"hww", "hww2"})
 //    @Lazy
     public HelloWorld2 helloWorld2() {
         logger.info("creating hello world2 in day2Config");
@@ -129,4 +130,15 @@ public class DayTwoConfig {
         
         return source;
     }
+    
+    //how to reload property files automaticaly on change
+//    @Bean
+//    public MessageSource messageSource() {
+//        ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+//        source.setBasenames("errorMsg");
+////        Adding anotherBase name having the same keys?
+////        source.setBasenames("labelDisplay");
+//        
+//        return source;
+//    }
 }

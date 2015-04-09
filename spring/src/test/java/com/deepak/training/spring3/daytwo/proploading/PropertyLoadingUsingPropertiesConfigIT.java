@@ -28,4 +28,10 @@ public class PropertyLoadingUsingPropertiesConfigIT {
         
         assertThat(propertyLoadingUsingPropertiesConfig.getSampleTrainEmail(), is("abc@dbe.com"));
     }
+    
+    @Test public void
+    whenGetPropertyNotInPropetyFile_givenDefaultIsGiven_shouldReturnTheSame() {
+        
+        assertThat(propertyLoadingUsingPropertiesConfig.getPropertyNotDefinedInPropfile(), is("xyz"));
+    }
 }

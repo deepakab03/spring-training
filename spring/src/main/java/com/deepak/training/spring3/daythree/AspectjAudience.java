@@ -21,7 +21,7 @@ public class AspectjAudience {
     public void performance() {
     }
 
-    //@Before("performance()")
+//    @Before("performance()")
     public void takeSeats() {
         logger.info("Audience is Taking seats");
     }

@@ -5,9 +5,9 @@ import org.apache.commons.logging.LogFactory;
 
 import com.deepak.training.spring3.exception.PerformanceException;
 
+//how would the intrumentalist --> audience functionality be traditionally implemented?
 public class Instrumentalist implements Performer {
     private static final Log logger = LogFactory.getLog(Instrumentalist.class);
-
     private String song;
 
     public void perform() throws PerformanceException {
