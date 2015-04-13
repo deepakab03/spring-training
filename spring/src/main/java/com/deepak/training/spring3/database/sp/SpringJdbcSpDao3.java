@@ -1,4 +1,4 @@
-package com.deepak.training.spring3.database;
+package com.deepak.training.spring3.database.sp;
 
 import java.util.Map;
 

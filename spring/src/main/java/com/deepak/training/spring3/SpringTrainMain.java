@@ -8,15 +8,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.deepak.training.spring3.config.dayone.DayOneConfig;
+import com.deepak.training.spring3.database.DayFourMain;
 import com.deepak.training.spring3.dayone.HelloWorld;
 import com.deepak.training.spring3.daytwo.DayTwo;
+import com.deepak.training.spring3.exception.PerformanceException;
 
 public class SpringTrainMain {
     private static final Logger logger = LoggerFactory.getLogger(SpringTrainMain.class);
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, PerformanceException {
 //        dayOne();
-        dayTwo(args);
+//        dayTwo(args);
+        DayFourMain.start();
     }
 
     @SuppressWarnings("resource")
