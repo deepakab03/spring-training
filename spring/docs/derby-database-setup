@@ -1,0 +1,42 @@
+- For a Java DB installation, set the DERBY_HOME environment variable, described in Setting the environment variables, to JAVA_HOME/db.
+DERBY_HOME = %JAVA_HOME%\db or the actual derby installation folder
+To path add %DERBY_HOME%\bin
+
+To check from command prompt run:
+echo %DERBY_HOME%
+
+- running derby in a client/server mode
+java -jar %DERBY_HOME%\lib\derbyrun.jar server start
+
+- create database and tables from command prompt
+ij
+#to create spring_train db
+#create table
+#insert data
+
+#CONNECT 'jdbc:derby:spring_train;create=true'; also works 
+CONNECT 'jdbc:derby://localhost:1527/spring_train;create=true';
+
+
+CREATE TABLE pet
+    (id INT PRIMARY KEY,
+    name VARCHAR(20),
+    owner VARCHAR(20),
+    species VARCHAR(20),
+    sex char(1),
+    birth date,
+    death date);
+
+insert into pet values(1, 'Jewel', 'Deepak', 'cat', 'f', '1990-01-01', '1998-01-01');
+insert into pet values(2, 'Judy', 'Sunita', 'dog', 'f', '1991-01-01', '1999-01-01');
+insert into pet values(3, 'Pappu', 'Rakesh', 'dog', 'm', '1991-01-01', '1999-01-01');
+insert into pet values(4, 'Caesar', 'Chandan', 'dog', 'm', '1991-01-01', '1999-01-01');
+insert into pet values(5, 'Einstein', 'Sonam', 'dog', 'm', '1991-01-01', '1999-01-01');
+
+select * from pet;
+
+
+- to reconnect to db
+run
+ij
+CONNECT 'jdbc:derby:spring_train;create=false';
