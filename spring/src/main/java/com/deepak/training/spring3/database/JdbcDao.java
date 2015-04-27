@@ -49,9 +49,9 @@ public class JdbcDao {
         } finally {
   
             try {
-                if(con!=null) con.close();
-                if (ps!=null) ps.close();
                 if (rs!=null) rs.close();
+                if (ps!=null) ps.close();
+                if(con!=null) con.close();
             } catch (SQLException e) {
                 logger.info("stacktrace:",e);
             }

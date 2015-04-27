@@ -1,12 +1,19 @@
-- For a Java DB installation, set the DERBY_HOME environment variable, described in Setting the environment variables, to JAVA_HOME/db.
+- For a Java DB installation, set the DERBY_HOME environment variable, described in Setting the environment variables, 
+to JAVA_HOME/db.
 DERBY_HOME = %JAVA_HOME%\db or the actual derby installation folder
 To path add %DERBY_HOME%\bin
 
 To check from command prompt run:
 echo %DERBY_HOME%
 
-- running derby in a client/server mode
+--- running derby in a client/server mode (if the jdk in is a directory with spaces apply double quotes around the file path)
 java -jar %DERBY_HOME%\lib\derbyrun.jar server start
+
+--We can either use an SQL client like Squirrel to access the datbase or use ij which is the derby command line tool
+We don't need to pass a user name or pwd to connec to a derby Db. The derby db name is passed as part of the URL during DB 
+connection initially. However if we do pass a user name and pwd to a derby db during JDBC connection, then the user name becomes the DB (or schema) name.
+
+Accordingly from the java side we need to either pass the user name and password or omit the same. 
 
 - create database and tables from command prompt
 ij
@@ -14,8 +21,8 @@ ij
 #create table
 #insert data
 
-#CONNECT 'jdbc:derby:spring_train;create=true'; also works 
-CONNECT 'jdbc:derby://localhost:1527/spring_train;create=true';
+#CONNECT 'jdbc:derby:spring_train;create=true'; also works (no need for user name or pwd
+    CONNECT 'jdbc:derby://localhost:1527/spring_train;create=true';
 
 
 CREATE TABLE pet
@@ -39,4 +46,4 @@ select * from pet;
 - to reconnect to db
 run
 ij
-CONNECT 'jdbc:derby:spring_train;create=false';
+CONNECT 'jdbc:derby:spring_train;create=false'; //false or true will work, it will not recreate the db.

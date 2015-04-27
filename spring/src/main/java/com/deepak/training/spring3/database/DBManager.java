@@ -24,7 +24,8 @@ public class DBManager {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/spring_train;create=false");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/spring_train;create=false", 
+                    "SPRING_TRAIN", "SPRING_TRAIN");
             //using log4jdbc
 //            conn = DriverManager.getConnection("jdbc:log4jdbc:mysql://localhost/training?"
 //                    + "user=root&password=root");
