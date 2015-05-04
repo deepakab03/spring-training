@@ -16,7 +16,7 @@ import com.deepak.training.spring3.config.database.DatabaseConfig;
 
 @ContextConfiguration(classes=DatabaseConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class JdbcDaoTest {
+public class JdbcDaoIT {
 
     @Autowired private JdbcDao jdbcDao;
     
