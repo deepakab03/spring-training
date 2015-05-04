@@ -8,9 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class PropertiesConfig implements InitializingBean {
 
     @Value("${train.sample.email}") private String sampleTrainEmail;
-    @Value("${train.db.driverName}") private String trainDbDriverName;
     //specifying a default value for a property, use propName:default-value
     @Value("${some.unknown.prop:xyz}") private String propertyNotDefinedInPropfile;
+    
+    @Value("${train.db.driver_name}") private String trainingDbDriverClass;
+    @Value("${train.db.url}") private String trainingDbUrl;
+    @Value("${tran.db.username}") private String trainingDbUsername;
+    @Value("${tran.db.password}") private String trainingDbPassword;
     
     public String getPropertyNotDefinedInPropfile() {
         return propertyNotDefinedInPropfile;
@@ -27,7 +31,19 @@ public class PropertiesConfig implements InitializingBean {
         return sampleTrainEmail;
     }
 
-    public String getTrainDbDriverName() {
-        return trainDbDriverName;
+    public String getTrainingDbDriverClass() {
+        return trainingDbDriverClass;
+    }
+
+    public String getTrainingDbUrl() {
+        return trainingDbUrl;
+    }
+
+    public String getTrainingDbUsername() {
+        return trainingDbUsername;
+    }
+
+    public String getTrainingDbPassword() {
+        return trainingDbPassword;
     }
 }

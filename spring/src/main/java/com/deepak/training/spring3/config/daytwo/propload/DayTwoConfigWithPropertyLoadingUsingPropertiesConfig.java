@@ -29,7 +29,7 @@ public class DayTwoConfigWithPropertyLoadingUsingPropertiesConfig {
     
     @Bean
     public PropertyLoadingUsingPropertiesConfig propertyLoadingEg() {
-        final PropertyLoadingUsingPropertiesConfig propertyLoadingEg = new PropertyLoadingUsingPropertiesConfig(propertiesConfig.getTrainDbDriverName());
+        final PropertyLoadingUsingPropertiesConfig propertyLoadingEg = new PropertyLoadingUsingPropertiesConfig(propertiesConfig.getTrainingDbDriverClass());
         propertyLoadingEg.setConfigProperties(propertiesConfig);
         return propertyLoadingEg;
     }
