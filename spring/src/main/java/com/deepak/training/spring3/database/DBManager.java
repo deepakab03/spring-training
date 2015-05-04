@@ -24,8 +24,11 @@ public class DBManager {
     public static Connection getConnection() {
         Connection conn = null;
         try {
+            //if using only ij to connect to a derby db
+//            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/spring_train;create=false");
+            //when using a username and pwd to connect when using squirrel for eg
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/spring_train;create=false", 
-                    "SPRING_TRAIN", "SPRING_TRAIN");
+                    "spring_train", "spring_train");
             //using log4jdbc
 //            conn = DriverManager.getConnection("jdbc:log4jdbc:mysql://localhost/training?"
 //                    + "user=root&password=root");

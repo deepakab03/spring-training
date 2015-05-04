@@ -15,35 +15,23 @@ connection initially. However if we do pass a user name and pwd to a derby db du
 
 Accordingly from the java side we need to either pass the user name and password or omit the same. 
 
-- create database and tables from command prompt
+- create tables and insert data from ij command line interface. Execute:
 ij
 #to create spring_train db
-#create table
-#insert data
 
 #CONNECT 'jdbc:derby:spring_train;create=true'; also works (no need for user name or pwd
-    CONNECT 'jdbc:derby://localhost:1527/spring_train;create=true';
+CONNECT 'jdbc:derby://localhost:1527/spring_train;create=true';
 
+#create table
+Run the Sql in src/resource/sql/ddl/training-db-create-entites.sql by copy pasting the same at the prompt
 
-CREATE TABLE pet
-    (id INT PRIMARY KEY,
-    name VARCHAR(20),
-    owner VARCHAR(20),
-    species VARCHAR(20),
-    sex char(1),
-    birth date,
-    death date);
+#insert required data
+Run the Sql in src/resource/sql/dml/pet.sql by copy pasting the same at the prompt
 
-insert into pet values(1, 'Jewel', 'Deepak', 'cat', 'f', '1990-01-01', '1998-01-01');
-insert into pet values(2, 'Judy', 'Sunita', 'dog', 'f', '1991-01-01', '1999-01-01');
-insert into pet values(3, 'Pappu', 'Rakesh', 'dog', 'm', '1991-01-01', '1999-01-01');
-insert into pet values(4, 'Caesar', 'Chandan', 'dog', 'm', '1991-01-01', '1999-01-01');
-insert into pet values(5, 'Einstein', 'Sonam', 'dog', 'm', '1991-01-01', '1999-01-01');
-
+#view data, to view all the pets inserted, Run:
 select * from pet;
 
 
-- to reconnect to db
-run
+- to reconnect to db run
 ij
 CONNECT 'jdbc:derby:spring_train;create=false'; //false or true will work, it will not recreate the db.
