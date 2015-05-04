@@ -3,14 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- Defining a transation manager, use JdbcTranMan for  jdbc operations only, JtaTranMan for distrubuted transaactions-->
+<!-- Defining a transation manager, use JdbcTranMan for  jdbc operations only, JtaTranMan for distributed transactions-->
 	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
@@ -19,7 +19,7 @@
 		<property name="transactionManager" ref="txManager" />
 	</bean>
 	<!--
-	<bean id="templateService" class="com.deepak.training.spring3.database.tran.tran.TransactionServiceImpl">
+	<bean id="templateService" class="com.deepak.training.spring3.database.tran.TransactionServiceImpl">
 		<property name="transactionTemplate" ref="transactionTemplate" />
 		<property name="hibernateDao" ref="hibernateDao" />
 	</bean>
@@ -43,13 +43,13 @@
 	<bean id="service" parent="baseTransactionProxy">
 		<property name="proxyInterfaces">
 			<list>
-				<value>com.deepak.training.spring3.database.tran.tran.TransactionService</value>
+				<value>com.deepak.training.spring3.database.tran.TransactionService</value>
 			</list>
 		</property>
 		<property name="target" ref="serviceTarget" />
 	</bean>
 	
-	<bean id="serviceTarget" class="com.deepak.training.spring3.database.tran.tran.TransactionServiceImpl">
+	<bean id="serviceTarget" class="com.deepak.training.spring3.database.tran.TransactionServiceImpl">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 		<property name="transactionTemplate" ref="transactionTemplate" />
@@ -72,7 +72,7 @@
 	</aop:config> 
 	-->
 	
-	<bean id="service2" class="com.deepak.training.spring3.database.tran.tran.TransactionServiceImpl2">
+	<bean id="service2" class="com.deepak.training.spring3.database.tran.TransactionServiceImpl2">
 		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 		<property name="hibernateDao" ref="hibernateDao" />

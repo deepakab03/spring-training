@@ -42,7 +42,7 @@ public class DayFourMain {
       HibernateDao hdao = (HibernateDao) ctx.getBean("hibernateDao");
       Pet p = new Pet();
       p.setOwner("Ashok");
-      hdao.deletePet(p);
+//      hdao.deletePet(p); only works with a tx manager and requise anntation / xml config in place
       
       hdao.deletePetUsingName(new Pet("Puffball"));
       List<Pet>  l =hdao.fetchAllPets(); 
@@ -54,13 +54,13 @@ public class DayFourMain {
          
      }
       
-      TransactionService templService=       (TransactionService) ctx.getBean("templateService");
-      templService.dojob();
-      
-	  TransactionService service=       (TransactionService) ctx.getBean("service");
-//      TransactionService service = (TransactionService) ctx.getBean("service2");
-	     service.dojob();
-	     service.save();
+//      TransactionService templService=       (TransactionService) ctx.getBean("templateService");
+//      templService.dojob();
+//      
+//	  TransactionService service=       (TransactionService) ctx.getBean("service");
+////      TransactionService service = (TransactionService) ctx.getBean("service2");
+//	     service.dojob();
+//	     service.save();
 
 
 	}

@@ -3,25 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- 
-    <import resource="database-tran.xml" /> -->
+<!--
+    <import resource="database-tran.xml" />  -->
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<!-- ><property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" /> -->
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
-		<property name="url" value="jdbc:derby://localhost:1527/spring_train;create=false" />
+		<property name="url" value="jdbc:derby://localhost:1527/SPRING_TRAIN;create=false" />
         <!-- don't need to pass empty values -->
-		<!-- >property name="username" value="" />
-		<property name="password" value="" />
+		<property name="username" value="SPRING_TRAIN" />
+		<property name="password" value="SPRING_TRAIN" />
 		<property name="initialSize" value="1" />
-		<property name="maxTotal" value="2" /> -->
+		<property name="maxTotal" value="2" /> 
 	</bean>
-
+    
 	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
@@ -38,8 +38,20 @@
 				hibernate.dialect=org.hibernate.dialect.DerbyDialect
       		</value>
 		</property>
+        <property name="mappingResources">
+            <list>
+                <value>com/deepak/training/spring3/model/Pet.hbm.xml</value>
+            </list>
+        </property>
 	</bean>
 
+    <!-- what happens if the bean name is changed to say txManager -->
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+<!--  -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<constructor-arg ref="sessionFactory" />
 	</bean>

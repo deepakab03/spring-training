@@ -6,6 +6,7 @@ import java.util.Date;
 public class Pet implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    private long id;
     private String name;
     private String owner;
     private String species;
@@ -123,6 +124,14 @@ public class Pet implements Serializable {
 
     public void setDeath(Date death) {
         this.death = death;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }
