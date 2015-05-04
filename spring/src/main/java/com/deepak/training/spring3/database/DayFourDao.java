@@ -3,7 +3,7 @@ package com.deepak.training.spring3.database;
 import java.util.List;
 import java.util.Map;
 
-import com.deepak.training.spring3.model.Pet;
+import com.deepak.training.spring3.model.PetOld;
 
 
 public interface DayFourDao {
@@ -12,5 +12,5 @@ public interface DayFourDao {
 
     void exceptionCreation();
     
-    List<Pet> fetchPet(Pet pet);
+    List<PetOld> fetchPet(PetOld petOld);
 }

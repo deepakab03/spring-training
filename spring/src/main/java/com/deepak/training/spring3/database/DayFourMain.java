@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.deepak.training.spring3.database.tran.TransactionService;
 import com.deepak.training.spring3.exception.PerformanceException;
-import com.deepak.training.spring3.model.Pet;
+import com.deepak.training.spring3.model.PetOld;
 
 public class DayFourMain {
 	private static final Logger logger = LoggerFactory.getLogger(DayFourMain.class);
@@ -34,35 +34,33 @@ public class DayFourMain {
       
 //      dao.exceptionCreation();
       
-      dao.fetchPet(new Pet("judy"));
+      dao.fetchPet(new PetOld("judy"));
       
       /*
        * Using an ORM tool like Hibernate - dependecies - antlr, dom4j, sl4j, j2ee-transation, hibernate jars
        */
       HibernateDao hdao = (HibernateDao) ctx.getBean("hibernateDao");
-      Pet p = new Pet();
+      PetOld p = new PetOld();
       p.setOwner("Ashok");
 //      hdao.deletePet(p); only works with a tx manager and requise anntation / xml config in place
       
-      hdao.deletePetUsingName(new Pet("Puffball"));
-      List<Pet>  l =hdao.fetchAllPets(); 
-      for (Pet pet : l) {
-         logger.info("pet fetched using hibernate - " + pet);
-         if (pet.getName().equals("jewel")) {
-        	 hdao.deletePet(pet);
+      hdao.deletePetUsingName(new PetOld("Puffball"));
+      List<PetOld>  l =hdao.fetchAllPets(); 
+      for (PetOld petOld : l) {
+         logger.info("pet fetched using hibernate - " + petOld);
+         if (petOld.getName().equals("jewel")) {
+        	 hdao.deletePet(petOld);
          }
          
      }
       
-//      TransactionService templService=       (TransactionService) ctx.getBean("templateService");
-//      templService.dojob();
-//      
-//	  TransactionService service=       (TransactionService) ctx.getBean("service");
-////      TransactionService service = (TransactionService) ctx.getBean("service2");
-//	     service.dojob();
-//	     service.save();
-
-
+      TransactionService templService=       (TransactionService) ctx.getBean("templateService");
+      templService.dojob();
+      
+	  TransactionService service=       (TransactionService) ctx.getBean("service");
+//      TransactionService service = (TransactionService) ctx.getBean("service2");
+	     service.dojob();
+	     service.save();
 	}
 
 

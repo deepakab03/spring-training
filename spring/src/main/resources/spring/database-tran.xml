@@ -8,28 +8,29 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- Defining a transation manager, use JdbcTranMan for  jdbc operations only, JtaTranMan for distributed transactions-->
-	<bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+    <!-- Defining a transation manager, use JdbcTranMan for  jdbc operations only, JtaTranMan for distributed transactions-->
+ <!-- what happens if the bean name is changed to say txManager -->
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 	
 	<!-- Using a transation template -->
 	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
-		<property name="transactionManager" ref="txManager" />
+		<property name="transactionManager" ref="transactionManager" />
 	</bean>
-	<!--
+	<!-- -->
 	<bean id="templateService" class="com.deepak.training.spring3.database.tran.TransactionServiceImpl">
 		<property name="transactionTemplate" ref="transactionTemplate" />
 		<property name="hibernateDao" ref="hibernateDao" />
 	</bean>
-	-->
+	
 
 	<!-- Making a abstract transaction proxy bean which other beans can extend -->
 	<bean id="baseTransactionProxy"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
 		abstract="true">
-		<property name="transactionManager" ref="txManager" />
+		<property name="transactionManager" ref="transactionManager" />
 		<property name="transactionAttributes">
 			<props>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
@@ -58,7 +59,7 @@
 	</bean>
 
 	<!-- Using spring aop to inject advice  
-	<tx:advice id="txAdvice" transaction-manager="txManager"> 
+	<tx:advice id="txAdvice" transaction-manager="transactionManager"> 
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED" />
 			<tx:method name="do*" propagation="REQUIRED" />
@@ -80,7 +81,7 @@
 	</bean> 
 	
 	<!-- Using annotation driven transactions --> 
-	<tx:annotation-driven transaction-manager="txManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	
 </beans>

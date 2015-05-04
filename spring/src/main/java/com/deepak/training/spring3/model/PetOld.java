@@ -3,7 +3,7 @@ package com.deepak.training.spring3.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Pet implements Serializable {
+public class PetOld implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private long id;
@@ -14,17 +14,17 @@ public class Pet implements Serializable {
     private Date   birth;
     private Date   death;
 
-    public Pet() {
+    public PetOld() {
         super();
     }
 
-    public Pet(String name) {
+    public PetOld(String name) {
         super();
         this.name = name;
     }
     
-    public static Pet createTestPet() {
-        Pet p = new Pet();
+    public static PetOld createTestPet() {
+        PetOld p = new PetOld();
         
         p.setName("Ghonchu");
         p.setOwner("Pappu");
@@ -59,7 +59,7 @@ public class Pet implements Serializable {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        Pet other = (Pet) obj;
+        PetOld other = (PetOld) obj;
         if (birth == null) {
             if (other.birth != null) return false;
         } else if (!birth.equals(other.birth)) return false;

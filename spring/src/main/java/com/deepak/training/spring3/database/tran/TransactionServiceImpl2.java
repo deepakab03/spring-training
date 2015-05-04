@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.deepak.training.spring3.database.DayFourDao;
 import com.deepak.training.spring3.database.HibernateDao;
-import com.deepak.training.spring3.model.Pet;
+import com.deepak.training.spring3.model.PetOld;
 
 /**
  * Using annotations to implement transactions
@@ -33,7 +33,7 @@ public class TransactionServiceImpl2 implements TransactionService {
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
     public void dojob() {
         
-                Pet p = new Pet();
+                PetOld p = new PetOld();
                 p.setOwner("Ashok");
                 hibernateDao.deletePet(p);
                 if (true) throw new RuntimeException("test exception 3");
@@ -41,7 +41,7 @@ public class TransactionServiceImpl2 implements TransactionService {
 
     @Transactional(propagation=Propagation.REQUIRED, readOnly=false)
     public void save() {
-        Pet p = new Pet();
+        PetOld p = new PetOld();
         p.setOwner("Ashok");
         hibernateDao.deletePet(p);
         if (true) throw new RuntimeException("test exception 4");

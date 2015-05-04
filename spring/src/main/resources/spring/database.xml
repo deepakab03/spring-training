@@ -8,8 +8,8 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--
-    <import resource="database-tran.xml" />  -->
+    <!-- -->
+    <import resource="database-tran.xml" />  
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<!-- ><property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" /> -->
@@ -40,17 +40,11 @@
 		</property>
         <property name="mappingResources">
             <list>
-                <value>com/deepak/training/spring3/model/Pet.hbm.xml</value>
+                <value>com/deepak/training/spring3/model/PetOld.hbm.xml</value>
             </list>
         </property>
 	</bean>
 
-    <!-- what happens if the bean name is changed to say txManager -->
-    <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-    
 <!--  -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<constructor-arg ref="sessionFactory" />

@@ -8,7 +8,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.deepak.training.spring3.database.DayFourDao;
 import com.deepak.training.spring3.database.HibernateDao;
-import com.deepak.training.spring3.model.Pet;
+import com.deepak.training.spring3.model.PetOld;
 
 
 public class TransactionServiceImpl implements TransactionService {
@@ -33,7 +33,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             public Object doInTransaction(TransactionStatus arg0) {
 //                try {
-                    Pet p = new Pet();
+                    PetOld p = new PetOld();
                     p.setOwner("Ashok");
                     hibernateDao.deletePet(p);
 //                    if (true) throw new RuntimeException("test exception");
@@ -49,10 +49,10 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     public void save() {
-        Pet p = new Pet();
+        PetOld p = new PetOld();
         p.setOwner("Ashok");
         hibernateDao.deletePet(p);
-        if (true) throw new RuntimeException("test exception 2");
+//        if (true) throw new RuntimeException("test exception 2");
     }
 
     public TransactionTemplate getTransactionTemplate() {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
-import com.deepak.training.spring3.model.Pet;
+import com.deepak.training.spring3.model.PetOld;
 
 /**
  * Avoid usage of hibernateTemplate for new projects
@@ -15,28 +15,28 @@ public class HibernateDao {
 
     private HibernateTemplate hibernateTemplate;
 
-    public List<Pet> fetchPet(Pet pet) {
-        return (List<Pet>) hibernateTemplate.find("Pet p where p.name = '" + pet.getName() + "'");
+    public List<PetOld> fetchPet(PetOld petOld) {
+        return (List<PetOld>) hibernateTemplate.find("PetOld p where p.name = '" + petOld.getName() + "'");
     }
 
-    public List<Pet> fetchAllPets() {
-        return (List<Pet>) hibernateTemplate.find("from Pet p");
+    public List<PetOld> fetchAllPets() {
+        return (List<PetOld>) hibernateTemplate.find("from PetOld p");
     }
 
-    public void inserPet(Pet p) {
+    public void inserPet(PetOld p) {
         hibernateTemplate.saveOrUpdate(p);
     }
 
-    public void updatePet(Pet p) {
+    public void updatePet(PetOld p) {
         hibernateTemplate.update(p);
     }
 
-    public void deletePet(Pet p) {
+    public void deletePet(PetOld p) {
         hibernateTemplate.delete(p);
 
     }
 
-    public void deletePetUsingName(Pet p) {
+    public void deletePetUsingName(PetOld p) {
         // hibernateTemplate.delete( + p.getName() + "'");
 
     }
