@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.deepak.training.spring3.database.tran.TransactionService;
 import com.deepak.training.spring3.exception.PerformanceException;
-import com.deepak.training.spring3.model.PetOld;
+import com.deepak.training.spring3.model.Pet;
 
 public class DayFourMain {
 	private static final Logger logger = LoggerFactory.getLogger(DayFourMain.class);
@@ -34,22 +34,22 @@ public class DayFourMain {
       
 //      dao.exceptionCreation();
       
-      dao.fetchPet(new PetOld("judy"));
+      dao.fetchPet(new Pet("judy"));
       
       /*
        * Using an ORM tool like Hibernate - dependecies - antlr, dom4j, sl4j, j2ee-transation, hibernate jars
        */
       HibernateDao hdao = (HibernateDao) ctx.getBean("hibernateDao");
-      PetOld p = new PetOld();
+      Pet p = new Pet();
       p.setOwner("Ashok");
 //      hdao.deletePet(p); only works with a tx manager and requise anntation / xml config in place
       
-      hdao.deletePetUsingName(new PetOld("Puffball"));
-      List<PetOld>  l =hdao.fetchAllPets(); 
-      for (PetOld petOld : l) {
-         logger.info("pet fetched using hibernate - " + petOld);
-         if (petOld.getName().equals("jewel")) {
-        	 hdao.deletePet(petOld);
+      hdao.deletePetUsingName(new Pet("Puffball"));
+      List<Pet>  l =hdao.fetchAllPets(); 
+      for (Pet pet : l) {
+         logger.info("pet fetched using hibernate - " + pet);
+         if (pet.getName().equals("jewel")) {
+        	 hdao.deletePet(pet);
          }
          
      }
