@@ -20,6 +20,6 @@ public class PropertyLoadingUsingComponentScan {
     @Test public void
     whenGetDbDriver_givenDbDriverInjected_shouldReturnTheSame() {
         
-        assertThat(propertyLoadingAnnotationEg.getDbDriver(), is("com.hsql.HSqlDb"));
+        assertThat(propertyLoadingAnnotationEg.getDbDriver(), is("org.apache.derby.jdbc.ClientDriver"));
     }
 }

@@ -20,7 +20,7 @@ public class PropertyLoadingUsingPropertiesConfigIT {
     @Test public void
     whenGetDbDriver_givenDbDriverInjected_shouldReturnTheSame() {
         
-        assertThat(propertyLoadingUsingPropertiesConfig.getDbDriver(), is("com.hsql.HSqlDb"));
+        assertThat(propertyLoadingUsingPropertiesConfig.getDbDriver(), is("org.apache.derby.jdbc.ClientDriver"));
     }
     
     @Test public void

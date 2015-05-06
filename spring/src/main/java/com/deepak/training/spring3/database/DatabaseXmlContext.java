@@ -34,7 +34,7 @@ public class DatabaseXmlContext {
       
 //      dao.exceptionCreation();
       
-      dao.fetchPet(new Pet("judy"));
+      dao.fetchPetByPetName(new Pet("judy"));
       
       /*
        * Using an ORM tool like Hibernate - dependecies - antlr, dom4j, sl4j, j2ee-transation, hibernate jars

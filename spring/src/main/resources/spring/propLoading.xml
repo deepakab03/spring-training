@@ -26,7 +26,7 @@
     <context:property-placeholder location="classpath:spring-train.properties"/>      
     
     <bean id="propertyLoadingEg" class="com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg" 
-        p:dbDriver="${train.db.driverName}"/>
+        p:dbDriver="${train.db.driver_name}"/>
         
     <bean id="propertyLoadingEg2" class="com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg" 
         c:dbDriver="#{systemProperties['newDriverName']}"/>

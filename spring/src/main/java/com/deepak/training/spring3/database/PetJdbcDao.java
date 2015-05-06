@@ -66,29 +66,29 @@ public class PetJdbcDao implements PetDao {
 
     }
     
-    public Map<String, Object> fetchPetWithId(int petId) throws IllegalStateException {
+    public Pet fetchPetById(long petId) throws IllegalStateException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Map<String, Object> map = null;
+        Pet pet = null;
         
         try {
             con = DBManager.getConnection();
             ps = con.prepareStatement("select * from pet where id = ?");
-            ps.setInt(1, petId);
+            ps.setLong(1, petId);
             rs = ps.executeQuery();
             if (rs == null || !rs.next()) {
                 return null;
             }
             
-            map = new HashMap<String, Object>();
-            map.put("id", rs.getInt("id"));
-            map.put("name", rs.getString("name"));
-            map.put("owner", rs.getString("owner"));
-            map.put("species", rs.getString("species"));
-            map.put("sex", rs.getString("sex"));
-            map.put("birth", rs.getDate("birth"));
-            map.put("death", rs.getDate("death"));
+            pet = new Pet();
+            pet.setId(rs.getInt("id"));
+            pet.setName(rs.getString("name"));
+            pet.setOwner(rs.getString("owner"));
+            pet.setSpecies(rs.getString("species"));
+            pet.setSex(rs.getString("sex"));
+            pet.setBirth(rs.getDate("birth"));
+            pet.setDeath(rs.getDate("death"));
             
             if (rs.next()) {
                 throw new IllegalStateException("Multiple pets found with the same id: " + petId);
@@ -106,17 +106,17 @@ public class PetJdbcDao implements PetDao {
             }
             
         }
-        return map;
+        return pet;
 
     }
 
-    public int updatePetOwner(int petId, String petOwner) {
+    public int updatePetOwner(long petId, String petOwner) {
         Connection con = DBManager.getConnection();
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement("update pet set owner = ? where id = ?");
             ps.setString(1, petOwner);
-            ps.setInt(2, petId);
+            ps.setLong(2, petId);
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -135,7 +135,7 @@ public class PetJdbcDao implements PetDao {
     }
 
     @Override
-    public List<Pet> fetchPet(Pet pet) {
+    public List<Pet> fetchPetByPetName(Pet pet) {
         throw new UnsupportedOperationException();
     }
 

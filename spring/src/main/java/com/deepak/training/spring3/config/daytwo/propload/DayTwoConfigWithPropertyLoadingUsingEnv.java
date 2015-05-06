@@ -22,7 +22,7 @@ public class DayTwoConfigWithPropertyLoadingUsingEnv {
     @Bean
     public PropertyLoadingEg propertyLoadingEg() {
         final PropertyLoadingEg propertyLoadingEg = new PropertyLoadingEg();
-        final String dbDriver = env.getProperty("train.db.driverName");
+        final String dbDriver = env.getProperty("train.db.driver_name");
         propertyLoadingEg.setDbDriver(dbDriver);
         //overloaded methods?
         //required property?

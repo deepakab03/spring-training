@@ -15,14 +15,16 @@ public class Pet implements Serializable {
     private Date   death;
 
     public Pet() {
-        super();
     }
 
     public Pet(String name) {
-        super();
         this.name = name;
     }
     
+    public Pet(long petId) {
+        this.id = petId;
+    }
+
     public static Pet createTestPet() {
         Pet p = new Pet();
         

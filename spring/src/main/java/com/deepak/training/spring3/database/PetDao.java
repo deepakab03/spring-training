@@ -12,5 +12,9 @@ public interface PetDao {
 
     void exceptionCreation();
     
-    List<Pet> fetchPet(Pet pet);
+    List<Pet> fetchPetByPetName(Pet pet);
+
+    Pet fetchPetById(long petId);
+
+    int updatePetOwner(long petId, String newPetOwner);
 }

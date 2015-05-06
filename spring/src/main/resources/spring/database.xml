@@ -27,7 +27,7 @@
 	</bean>
 
 	<bean id="dayFourDao" class="com.deepak.training.spring3.database.PetSpringJdbcDaoImpl">
-		<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
+		<constructor-arg ref="namedParameterJdbcTemplate" />
 	</bean>
 <!-- -->
 	<bean id="sessionFactory"
@@ -51,7 +51,7 @@
 	</bean>
 
 	<bean id="hibernateDao" class="com.deepak.training.spring3.database.PetHibernateDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate" />
+		<constructor-arg ref="hibernateTemplate" />
 	</bean>
 
 </beans>

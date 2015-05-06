@@ -15,7 +15,7 @@ import com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg;
 public class DayTwoConfigWithPropertyLoading {
     
     //can this be put directly in the PropertyLoadingEg class?
-    @Value("${train.db.driverName}") private String trainDbDriver;
+    @Value("${train.db.driver_name}") private String trainDbDriver;
     
     //mandatory?
     @Bean

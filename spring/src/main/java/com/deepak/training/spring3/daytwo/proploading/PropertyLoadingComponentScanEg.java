@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 public class PropertyLoadingComponentScanEg {
 
     //will this work, should we use it?
-//    @Value("${train.db.driverName}"
+//    @Value("${train.db.driver_name}"
     private String dbDriver;
 
     public PropertyLoadingComponentScanEg() {
     }
 
     @Autowired
-    public PropertyLoadingComponentScanEg( @Value("${train.db.driverName}")String dbDriver) {
+    public PropertyLoadingComponentScanEg( @Value("${train.db.driver_name}")String dbDriver) {
         this.dbDriver = dbDriver;
     }
 
