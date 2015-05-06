@@ -40,7 +40,7 @@
 		</property>
         <property name="mappingResources">
             <list>
-                <value>com/deepak/training/spring3/model/PetOld.hbm.xml</value>
+                <value>com/deepak/training/spring3/model/Pet.hbm.xml</value>
             </list>
         </property>
 	</bean>

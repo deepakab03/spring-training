@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.deepak.training.spring3.model.PetOld;
+import com.deepak.training.spring3.model.Pet;
 
 public class DayFourDaoImpl  implements DayFourDao {
 	//extends SimpleJdbcDaoSupport
@@ -37,16 +37,16 @@ public class DayFourDaoImpl  implements DayFourDao {
         simpleJdbcTemplate.queryForObject("select name from pet where owner= :ownerName", map,  String.class);
     }
 
-    public List<PetOld> fetchPet(PetOld petOld) {
+    public List<Pet> fetchPet(Pet pet) {
         String query = "select * from pet where name = :petName";
         Map<String,Object> valueMap = new  HashMap<String, Object>();
-        valueMap.put("petName", petOld.getName());
+        valueMap.put("petName", pet.getName());
 //        SqlParameterSource args = new MapSqlParameterSource(valueMap);
         //new BeanPropertySqlParameterSource(pet);
-        RowMapper<PetOld> rm = new RowMapper<PetOld>() {
+        RowMapper<Pet> rm = new RowMapper<Pet>() {
 
-            public PetOld mapRow(ResultSet rs, int arg1) throws SQLException {
-                PetOld p = new PetOld();
+            public Pet mapRow(ResultSet rs, int arg1) throws SQLException {
+                Pet p = new Pet();
 
                 p.setName(rs.getString("name"));
                 p.setOwner(rs.getString("owner"));
@@ -59,7 +59,7 @@ public class DayFourDaoImpl  implements DayFourDao {
                 return p;
             }
         };
-        Map<String, ?> singletonMap = singletonMap("petName", petOld.getName());
+        Map<String, ?> singletonMap = singletonMap("petName", pet.getName());
         return simpleJdbcTemplate.query(query,  singletonMap, rm);
     }
 
