@@ -5,8 +5,8 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.deepak.training.spring3.database.DayFourDao;
-import com.deepak.training.spring3.database.HibernateDao;
+import com.deepak.training.spring3.database.PetDao;
+import com.deepak.training.spring3.database.PetHibernateDao;
 import com.deepak.training.spring3.model.Pet;
 
 /**
@@ -19,15 +19,15 @@ public class TransactionServiceImpl2 implements TransactionService {
 
     private HibernateTemplate   hibernateTemplate;
     private NamedParameterJdbcTemplate  namedParameterJdbcTemplate;
-    private HibernateDao        hibernateDao;
-    private DayFourDao          dayFourDao;
+    private PetHibernateDao        petHibernateDao;
+    private PetDao          petDao;
 
-    public DayFourDao getDayFourDao() {
-		return dayFourDao;
+    public PetDao getDayFourDao() {
+		return petDao;
 	}
 
-	public void setDayFourDao(DayFourDao dayFourDao) {
-		this.dayFourDao = dayFourDao;
+	public void setDayFourDao(PetDao petDao) {
+		this.petDao = petDao;
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
@@ -35,7 +35,7 @@ public class TransactionServiceImpl2 implements TransactionService {
         
                 Pet p = new Pet();
                 p.setOwner("Ashok");
-                hibernateDao.deletePet(p);
+                petHibernateDao.deletePet(p);
                 if (true) throw new RuntimeException("test exception 3");
     }
 
@@ -43,12 +43,12 @@ public class TransactionServiceImpl2 implements TransactionService {
     public void save() {
         Pet p = new Pet();
         p.setOwner("Ashok");
-        hibernateDao.deletePet(p);
+        petHibernateDao.deletePet(p);
         if (true) throw new RuntimeException("test exception 4");
     }
     
     public void find() {
-        hibernateDao.fetchAllPets();
+        petHibernateDao.fetchAllPets();
     }
 
     public HibernateTemplate getHibernateTemplate() {
@@ -59,12 +59,12 @@ public class TransactionServiceImpl2 implements TransactionService {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    public HibernateDao getHibernateDao() {
-        return hibernateDao;
+    public PetHibernateDao getHibernateDao() {
+        return petHibernateDao;
     }
 
-    public void setHibernateDao(HibernateDao hibernateDao) {
-        this.hibernateDao = hibernateDao;
+    public void setHibernateDao(PetHibernateDao petHibernateDao) {
+        this.petHibernateDao = petHibernateDao;
     }
 
     public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {

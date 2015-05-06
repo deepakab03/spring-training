@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import com.deepak.training.spring3.config.daytwo.propload.PropertiesConfig;
-import com.deepak.training.spring3.database.JdbcDao;
+import com.deepak.training.spring3.database.PetJdbcDao;
 
 @Configuration
 @Lazy
@@ -42,8 +42,8 @@ public class DatabaseConfig {
 	}
 	
 	@Bean
-	public JdbcDao jdbcDao() {
-	    return new JdbcDao();
+	public PetJdbcDao petJdbcDao() {
+	    return new PetJdbcDao();
 	}
 	
 }

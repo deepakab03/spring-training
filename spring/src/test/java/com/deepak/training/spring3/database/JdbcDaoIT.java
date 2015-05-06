@@ -26,7 +26,7 @@ public class JdbcDaoIT {
     private static final String NEW_PET_OWNER = "Rahul";
     private static final int PET_ID = 5;
     
-    @Autowired private JdbcDao jdbcDao;
+    @Autowired private PetJdbcDao petJdbcDao;
     
     @BeforeClass
     public static void beforeAnyTest() {
@@ -35,7 +35,7 @@ public class JdbcDaoIT {
     
     @Test public void
     whenFetchAll_shouldFetchAllPets() {
-        List<Map<String, Object>> allPets = jdbcDao.fetchAll();
+        List<Map<String, Object>> allPets = petJdbcDao.fetchAll();
         
         assertThat(allPets, hasSize(5));
     }
@@ -43,13 +43,13 @@ public class JdbcDaoIT {
     @Test public void
     whenUpdatePetOwner_givenValidArgs_shouldUpdateSinbleRowInDb() {
         assertThat(petOwner(), is(equalTo("Sonam")));
-        int updateCount = jdbcDao.updatePetOwner(PET_ID, NEW_PET_OWNER);
+        int updateCount = petJdbcDao.updatePetOwner(PET_ID, NEW_PET_OWNER);
         
         assertThat(updateCount, is(equalTo(1)));
         assertThat(petOwner(), is(equalTo(NEW_PET_OWNER)));
     }
 
     private String petOwner() {
-        return jdbcDao.fetchPetWithId(PET_ID).get("owner").toString();
+        return petJdbcDao.fetchPetWithId(PET_ID).get("owner").toString();
     }
 }

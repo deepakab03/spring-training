@@ -1,9 +1,11 @@
 package com.deepak.training.spring3.database;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
+import com.deepak.training.spring3.exception.SpringTrainRuntimeException;
 import com.deepak.training.spring3.model.Pet;
 
 /**
@@ -11,7 +13,7 @@ import com.deepak.training.spring3.model.Pet;
  * 
  * @author abrahd2
  */
-public class HibernateDao {
+public class PetHibernateDao implements PetDao {
 
     private HibernateTemplate hibernateTemplate;
 
@@ -47,5 +49,15 @@ public class HibernateDao {
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
+    }
+
+    @Override
+    public List<Map<String, Object>> fetchAll() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void exceptionCreation() {
+        throw new SpringTrainRuntimeException("test ex");
     }
 }

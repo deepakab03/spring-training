@@ -16,9 +16,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.deepak.training.spring3.model.Pet;
 
-public class DayFourDaoImpl  implements DayFourDao {
+public class PetSpringJdbcDaoImpl  implements PetDao {
 	//extends SimpleJdbcDaoSupport
-    private static final Log   logger = LogFactory.getLog(DayFourDaoImpl.class);
+    private static final Log   logger = LogFactory.getLog(PetSpringJdbcDaoImpl.class);
 
     private NamedParameterJdbcTemplate simpleJdbcTemplate;
 

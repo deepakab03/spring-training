@@ -6,7 +6,7 @@ import java.util.Map;
 import com.deepak.training.spring3.model.Pet;
 
 
-public interface DayFourDao {
+public interface PetDao {
 
     List<Map<String, Object>> fetchAll();
 

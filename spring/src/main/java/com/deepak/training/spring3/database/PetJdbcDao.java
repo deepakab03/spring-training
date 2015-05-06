@@ -12,8 +12,11 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class JdbcDao {
-    private static final Log logger = LogFactory.getLog(JdbcDao.class);
+import com.deepak.training.spring3.exception.SpringTrainRuntimeException;
+import com.deepak.training.spring3.model.Pet;
+
+public class PetJdbcDao implements PetDao {
+    private static final Log logger = LogFactory.getLog(PetJdbcDao.class);
 
     public List<Map<String, Object>> fetchAll() {
         Connection con = null;
@@ -131,4 +134,13 @@ public class JdbcDao {
         return 0;
     }
 
+    @Override
+    public List<Pet> fetchPet(Pet pet) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void exceptionCreation() {
+        throw new SpringTrainRuntimeException("test ex");
+    }
 }
