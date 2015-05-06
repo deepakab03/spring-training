@@ -21,7 +21,7 @@ import com.deepak.training.spring3.config.database.DatabaseConfig;
 @ContextConfiguration(classes=DatabaseConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql("/sql/dml/pet.sql")
-public class JdbcDaoIT {
+public class PetJdbcDaoIT {
 
     private static final String NEW_PET_OWNER = "Rahul";
     private static final int PET_ID = 5;
