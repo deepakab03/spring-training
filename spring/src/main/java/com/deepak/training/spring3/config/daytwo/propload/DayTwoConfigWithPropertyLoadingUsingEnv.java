@@ -17,6 +17,8 @@ import com.deepak.training.spring3.daytwo.proploading.PropertyLoadingEg;
 @Configuration
 @PropertySource("classpath:spring-train.properties")
 public class DayTwoConfigWithPropertyLoadingUsingEnv {
+    //doesn't create a PropertySourcesPlaceholderConfigurer so @Value will not work
+    //appear to not work with xml context-properties when mixed with java config.
     @Autowired private Environment env;
     
     @Bean
