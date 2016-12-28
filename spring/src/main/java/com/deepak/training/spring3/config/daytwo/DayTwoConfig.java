@@ -107,7 +107,7 @@ public class DayTwoConfig {
      * Application Listeners and events
      */
     @Bean
-//    @Scope(value="prototype")?
+//    @Scope(value="prototype") ?
     public TaxCalculator listenerImpl() {
         return new TaxCalculator();
     }

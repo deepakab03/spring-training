@@ -5,8 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
-import org.hamcrest.Matchers;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,10 @@ public class AppListenerIT {
 //    @Autowired private TaxCalculator taxCalculator1;
 //    @Autowired private TaxCalculator taxCalculator2;
     
+    @Before public void beforeEveryTest() {
+        TaxCalculator.resetNumEventsProcessed();
+    }
+    
     @Test public void
     shouldPublishAndCaptureApplicationEventProperly() {
          ctx.publishEvent(new ExampleApplicationEvent(this, "event fired from test"));
@@ -37,5 +40,6 @@ public class AppListenerIT {
          
          //prototype listeners?
 //         assertThat(taxCalculator1, is(not(equalTo(taxCalculator2))));
+         assertThat(TaxCalculator.numEventsProcessed(), is(1));
     }
 }
