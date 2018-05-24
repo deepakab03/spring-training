@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+       
+	<!-- Aspects -->
+	<bean id="audience" class="com.perot.training.daythree.aspects.Audience" />
+	
+	<!-- Aspects Using classical spring advice 
+	<bean id="audienceAdvice" class="com.perot.training.daythree.aspects.AudienceAdivce">
+		<property name="audience" ref="audience" />
+	</bean>
+	-->
+	<!-- Combine the advice bean and pointcut into one advisor bean OR declare a 
+	separate pointcut bean with spearate advice bean and separate advisor bean. Use either one or the other 
+	<bean id="performancePointcut" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* *.perform(..))" />
+	</bean>
+	<bean id="audienceAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="audienceAdvice" />
+		<property name="pointcut" ref="performancePointcut" />
+	</bean>
+	
+	<bean id="audienceAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="audienceAdvice" />
+		<property name="expression" value="execution(* *.perform(..))" />
+	</bean>
+	-->	
+	<!-- 
+	<bean id="instrmTarget" class="com.perot.training.daythree.aspects.Instrumentalist">
+		<property name="song" value="twinkle" />
+	</bean>
+	
+	<bean id="instrm" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="instrmTarget" />
+		<property name="interceptorNames" value="audienceAdvisor" />
+		<property name="proxyInterfaces" value="com.perot.training.daythree.aspects.Performer" />
+	</bean>
+	 -->
+	 
+	<!-- using autoproxying 
+	<bean id="instrm" class="com.perot.training.daythree.aspects.Instrumentalist">
+		<property name="song" value="twinkle" />
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+	-->
+	<!-- End using classical spring advice -->
+	
+	<!-- Aspects Using @AspecjJ annotations  
+	<aop:aspectj-autoproxy />
+	<bean id="aspectjAudience" class="com.perot.training.daythree.aspects.AspectjAudience" />
+	<bean id="instrm" class="com.perot.training.daythree.aspects.Instrumentalist">
+		<property name="song" value="twinkle" />
+	</bean>
+	-->
+	 
+	<!-- Aspects Using spring configuration
+	<bean id="instrm" class="com.perot.training.daythree.aspects.Instrumentalist">
+		<property name="song" value="twinkle" />
+	</bean>
+	
+	<aop:config>
+		<aop:aspect ref="audience">
+			<aop:pointcut id="performance"  expression="execution(* *.perform(..))" />
+			
+			<aop:before method="takeSeats" pointcut-ref="performance" />
+			<aop:before method="turnOffCellPhones" pointcut-ref="performance" />
+			<aop:after-returning method="applaud" pointcut-ref="performance" />
+			<aop:after-throwing method="demandRefund" pointcut-ref="performance" />
+		</aop:aspect>
+	</aop:config> 
+	-->
+</beans>

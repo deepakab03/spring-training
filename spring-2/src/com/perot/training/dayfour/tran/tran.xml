@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- Defining a transation manager, use JdbcTranMan for  jdbc operations only, JtaTranMan for distrubuted transaactions-->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Using a transation template -->
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="txManager" />
+	</bean>
+	<!--
+	<bean id="templateService" class="com.perot.training.dayfour.tran.TransactionServiceImpl">
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="hibernateDao" ref="hibernateDao" />
+	</bean>
+	-->
+
+	<!-- Making a abstract transaction proxy bean which other beans can extend -->
+	<bean id="baseTransactionProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager" ref="txManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="service" parent="baseTransactionProxy">
+		<property name="proxyInterfaces">
+			<list>
+				<value>com.perot.training.dayfour.tran.TransactionService</value>
+			</list>
+		</property>
+		<property name="target" ref="serviceTarget" />
+	</bean>
+	
+	<bean id="serviceTarget" class="com.perot.training.dayfour.tran.TransactionServiceImpl">
+		<property name="simpleJdbcTemplate" ref="simpleJdbcTemplate" />
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="hibernateDao" ref="hibernateDao" />
+		<property name="dayFourDao" ref="dayFourDao" />
+	</bean>
+
+	<!-- Using spring aop to inject advice  
+	<tx:advice id="txAdvice" transaction-manager="txManager"> 
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="do*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:advisor pointcut="execution(* *..TransactionService.*(..))" 
+		advice-ref="txAdvice" />
+	</aop:config> 
+	-->
+	
+	<bean id="service2" class="com.perot.training.dayfour.tran.TransactionServiceImpl2">
+		<property name="simpleJdbcTemplate" ref="simpleJdbcTemplate" />
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+		<property name="hibernateDao" ref="hibernateDao" />
+		<property name="dayFourDao" ref="dayFourDao" />
+	</bean> 
+	
+	<!-- Using annotation driven transactions --> 
+	<tx:annotation-driven transaction-manager="txManager" />
+	
+	
+</beans>

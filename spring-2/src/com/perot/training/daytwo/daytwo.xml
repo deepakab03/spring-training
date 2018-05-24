@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <import resource="anotherXml.xml" />
+
+    <bean id="helloWorld" name="hw" class="com.perot.training.dayone.HelloWorld">
+        <property name="message" value="Hello World" />
+    </bean>
+
+    <alias name="helloWorld" alias="app.HiWorld" />
+
+    <bean id="staticMethChild" class="com.perot.training.daytwo.StaticMethod" factory-method="getChild" />
+
+    <!-- the bean to be created via the factory bean -->
+    <bean id="collectionCreater" factory-bean="helloWorld" factory-method="createInstance" />
+
+    <!-- Innter bean examples -->
+    <bean id="outer" class="com.perot.training.daytwo.Outer">
+        <property name="target">
+            <bean class="com.perot.training.daytwo.Child">
+                <property name="name" value="Fiona Apple" />
+                <property name="age" value="25" />
+            </bean>
+        </property>
+    </bean>
+
+    <!-- a stateful bean deployed as a prototype (non-singleton) -->
+    <bean id="command" class="com.perot.training.daytwo.AsyncCommand" scope="prototype">
+
+    </bean>
+    <bean id="commandManager" class="com.perot.training.daytwo.CommandManager">
+        <lookup-method name="createCommand" bean="command" />
+    </bean>
+
+
+    <bean id="myValueCalculator" class="com.perot.training.daytwo.MyValueCalculator">
+        <replaced-method name="computeValue" replacer="replacementComputeValue">
+            <arg-type>String</arg-type>
+        </replaced-method>
+    </bean>
+    <bean id="replacementComputeValue" class="com.perot.training.daytwo.ReplacementComputeValue" />
+</beans>

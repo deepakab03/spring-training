@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+       
+	<import resource="aspects/aspects.xml" />
+       
+   <!-- compound naming  -->
+   <bean id="compoundNaming" class="com.perot.training.daythree.Autowire" lazy-init="true">
+   		<property name="helloWorld.message" value="Hi World" />
+   </bean>
+   
+   
+   <!--Auto wiring  
+   <bean id="helloWorld" class="com.perot.training.dayone.HelloWorld">
+   		<property name="message" value="Hello World" />
+   </bean>
+   
+   <bean id="command" class="com.perot.training.daytwo.AsyncCommand" scope="prototype">
+   		<property name="state" value="Async" />
+   </bean>
+   
+   <bean id="autoWireEg2" class="com.perot.training.daythree.Autowire" autowire="byName">
+   </bean>
+   -->
+   
+   <!-- scope eg, different bean ids of same class give different instances 
+   
+   <bean id="command" class="com.perot.training.daytwo.AsyncCommand" scope="prototype">
+   		<property name="state" value="Async" />
+   </bean>
+   
+   <bean id="command2" class="com.perot.training.daytwo.AsyncCommand" scope="prototype">
+   		<property name="state" value="Async" />
+   </bean>
+   -->
+     
+   <!-- Init and destroy methods, bean name and application context aware 
+   <bean id="initDestroyEg2" class="com.perot.training.daythree.InitDestroy2">
+   		<property name="message" value="using spring interfaces" />
+   </bean>
+   
+   <bean id="initDestroyEg" class="com.perot.training.daythree.InitDestroy" init-method="init" 
+   		       destroy-method="destroy">
+   		<property name="message" value="using methods" />
+   </bean>
+   
+   <bean id="anotherBean" class="com.perot.training.dayone.HelloWorld">
+		<property name="message" value="This is another bean" />
+	</bean>
+   -->
+   
+	 <!-- parent child relationship,  for parent if class is not used then abstract="true"
+	  has to be specified
+	<bean id="parentBean" abstract="true">
+		<property name="name" value="parentTest" />
+		<property name="age" value="1" />
+		<property name="salary" value="10000" />
+		<property name="designation" value="ASSociate" />
+	</bean>
+	
+	<bean id="childBean" class="com.perot.training.daytwo.Child" parent="parentBean">
+		<property name="name" value="Anand" />
+	</bean>
+	
+	<bean id="childBean2" class="com.perot.training.daytwo.Child" parent="parentBean">
+		<property name="name" value="Bhaskar" />
+		<property name="age" value="2" />
+	</bean> 
+	--> 
+		
+	<!-- ResourceBundle i18n and text message resolution (or use ReloadableResourceBundleMessageSource) 
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>errorMsg</value>
+			</list>
+		</property>
+	</bean>
+	-->
+	
+	<!-- Application listeners 
+	<bean id="listener" class="com.perot.training.daythree.ListenerImpl" />
+	-->
+	
+	<!-- Injecting non spring beans
+	<context:spring-configured/>
+	<bean id="nonSpringBean" class="com.dayfour.NonSringBeanInjection" abstract="true">
+		<property name="name" value="non injected" />
+		<property name="age" value="1" />
+		<property name="salary" value="10000" />
+		<property  name="designation" value="associate" />
+	</bean>
+	 --> 
+	
+</beans>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+
+<!-- List all the Appenders -->
+    <!-- %t - thread, %c{2} - pacakage.class where 2 is number of package to display, %L- line number,
+    %d{format) - date with format in curl bracket, %p - logger leve, %m - msg, %n - new line character
+    "[%t:%c{2}:%L][%d{HH:mm:ss,SSS}] %p %m%n" -->
+    <!-- Console Appender -->
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+     <param name="Threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t:%c{2}:%L][%d{DATE}] %p %m%n" />
+        </layout>
+    </appender>
+
+    <!-- File Appender -->
+    <appender name="logFile" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="test.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="2mb" />
+        <param name="MaxBackupIndex" value="1" />
+        <param name="Threshold" value="debug" />
+        <param name="ImmediateFlush" value="true" />
+        <!--<param name="DatePattern" value="'.'yyyy-MM-dd" />-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd MMM yyyy HH:mm:ss}][%c{2}:%L] %p %m%n" />
+        </layout>
+    </appender>
+
+
+<!-- List all the Loggers -->
+
+     <logger name="com.xx" >
+        <level value ="debug" />
+        <appender-ref ref="logFile"/>           
+    </logger>
+
+<!-- for log4jjdbc logging -->
+  <logger name="jdbc" additivity="false">
+    <level value="fatal" />
+  </logger>
+  
+  <logger name="jdbc.sqlonly" additivity="false">
+    <level value="info" />
+    <appender-ref ref="Console"/>
+  </logger>
+  
+<!-- to log hibernate query's -->
+  <!--logger name="org.hibernate.SQL" additivity="false">
+    <level value ="debug" />
+    <appender-ref ref="Console"/>
+    <appender-ref ref="logFile"/>
+  </logger>
+
+ <logger name="org.springframework.orm.hibernate3.HibernateTemplate" additivity="false">
+        <level value ="debug" />
+        <appender-ref ref="Console"/>
+        <appender-ref ref="logFile"/>
+ </logger> -->
+
+    <!-- to log jdbcTemplate queries-->
+    <logger name="org.springframework.jdbc.core.JdbcTemplate" additivity="false">
+        <level value ="debug" />
+        <appender-ref ref="Console"/>
+    </logger>
+    
+<!-- root logger -->
+    <root>
+        <level value ="info" />
+        <appender-ref ref="Console"/>
+    </root>
+</log4j:configuration>
+
